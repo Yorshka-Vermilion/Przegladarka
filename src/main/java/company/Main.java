@@ -1,7 +1,9 @@
 package company;
-public class Main {
-    public static void main(String[] args){
-       Okno frame = new Okno();
 
+public class Main {
+    public static void main(String[] args) {
+        Window window = new Window();
     }
 }
+
+
