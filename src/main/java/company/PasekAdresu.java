@@ -7,12 +7,12 @@ import java.awt.event.KeyEvent;
 import java.security.Key;
 
 
-public class BrowserWebBar {
+public class PasekAdresu {
     public static int number = 0;
     public String addressHistory[] = new String[1024];
     JTextField addressBar;
 
-    public BrowserWebBar(JFrame frame){
+    public PasekAdresu(JFrame frame){
         addressBar = new JTextField("");
         frame.add(addressBar);
         addressBar.setSize(frame.getWidth(),30);
