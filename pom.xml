@@ -21,11 +21,13 @@
             <version>1.0</version>
             <scope>test</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.openjfx/javafx -->
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>12.0.2</version>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -35,7 +37,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>hellofx/org.openjfx.App</mainClass>
+                    <mainClass>company.Main</mainClass>
                 </configuration>
             </plugin>
         </plugins>
