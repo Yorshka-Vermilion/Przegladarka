@@ -20,7 +20,6 @@ public class Okno implements ActionListener {
     JFXPanel jfxPanel;
     JPanel pustyPanel;
     JTabbedPane tabbedPane;
-    boolean flaga;
     public Okno(){
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
@@ -33,7 +32,6 @@ public class Okno implements ActionListener {
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
 
         zainicjujLayout(width, height); // Inicjacja layoutu przeglądarki
-        flaga = true;
 
         frame.pack();
         frame.setVisible(true);
@@ -132,6 +130,7 @@ public class Okno implements ActionListener {
             nowyJFX.setPreferredSize(new Dimension(width,height));
             nowyJFX.setScene(new Scene(nowyWV));
             nowyWV.getEngine().load("http://www.google.com/");
+            tabbedPane.setTitleAt(tabbedPane.getTabCount()-2,nowyWV.getEngine().getLocation());
         });
         tabbedPane.add(nowyJFX);
     }
