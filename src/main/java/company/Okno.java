@@ -15,6 +15,8 @@ public class Okno implements ActionListener{
     JFrame frame;
     Panel spod, panel, panel2;
     PasekAdresu pasekAdresu;
+    WebView webView;
+    JFXPanel jfxPanel;
     public Okno(){
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
@@ -36,6 +38,9 @@ public class Okno implements ActionListener{
         if(event.getSource() == pasekAdresu && pasekAdresu.focused){
             pasekAdresu.zapiszPole();
             System.out.println(pasekAdresu.wezPole());
+
+            wyszukaj(pasekAdresu.wezPole());
+
         }
     }
 
@@ -49,11 +54,11 @@ public class Okno implements ActionListener{
         panel = new Panel(width, 40, Color.RED, false);
         panel2 = new Panel(width, height-40, Color.GRAY, false);
 
-        JFXPanel jfxPanel = new JFXPanel();
+        jfxPanel = new JFXPanel();
         panel2.add(jfxPanel);
 
         Platform.runLater(() -> {
-            WebView webView = new WebView();
+            webView = new WebView();
             jfxPanel.setPreferredSize(new Dimension(panel2.getWidth(),panel2.getHeight()));
             jfxPanel.setScene(new Scene(webView));
             webView.getEngine().load("http://www.google.com/");
@@ -66,5 +71,30 @@ public class Okno implements ActionListener{
         spod.add(panel2);
     }
 
+    void wyszukaj(String url){
+        if(url.contains(".")) {
+            if(url.contains("https://")){
+                zaladuj(url);
+            }else if(url.contains("http://")){
+                zaladuj(url);
+            }else {
+                zaladuj("https://" + url);
+            }
+        } else {
+            wyszukajWGoogle(url);
+        }
+    }
+
+    void zaladuj(String url){
+        Platform.runLater(() -> {
+            webView.getEngine().load(url);
+        });
+    }
+
+    void wyszukajWGoogle(String url){
+        Platform.runLater(() -> {
+            webView.getEngine().load("http://google.com/search?q=" + url);
+        });
+    }
 
 }
