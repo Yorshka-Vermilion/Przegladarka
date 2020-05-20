@@ -24,6 +24,7 @@ public class Okno implements ActionListener {
     JFXPanel jfxPanel;
     JTabbedPane tabbedPane;
     Button odswiez,next,prev;
+    Historia historia;
     private WebView[] tablicaWebView;
     private int aktualnyWebView;
     public Okno(){
@@ -33,6 +34,8 @@ public class Okno implements ActionListener {
 
         this.tablicaWebView = new WebView[100];
         aktualnyWebView = 0;
+
+        this.historia = new Historia();
 
         frame = new JFrame("Przeglada");
         frame.setSize(width,height);
@@ -121,7 +124,7 @@ public class Okno implements ActionListener {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        
+                        historia.wypisz();
                     }
                 });
             }
@@ -173,12 +176,14 @@ public class Okno implements ActionListener {
     } // Funkcja sprawdza url i wykonuje odpowiednią operacje zaladowania strony
 
     void zaladuj(String url){
+        historia.dodaj(url);
         Platform.runLater(() -> {
             tablicaWebView[aktualnyWebView].getEngine().load(url);
         });
     } // Laduje stronę o podanym url
 
     void wyszukajWGoogle(String fraza){
+        historia.dodaj("http://google.com/search?q=" + fraza);
         Platform.runLater(() -> {
             tablicaWebView[aktualnyWebView].getEngine().load("http://google.com/search?q=" + fraza);
         });
@@ -194,6 +199,7 @@ public class Okno implements ActionListener {
                     pasekAdresu.zapiszPole(tablicaWebView[aktualnyWebView].getEngine().getLocation(),tabbedPane.getSelectedIndex());
                     pasekAdresu.setText(tablicaWebView[aktualnyWebView].getEngine().getLocation());
                     tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(),pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]);
+                    historia.dodaj(tablicaWebView[aktualnyWebView].getEngine().getLocation());
                 }
             }
         });
