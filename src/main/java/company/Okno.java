@@ -2,9 +2,11 @@ package company;
 
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Worker;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
+import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
 import javax.swing.*;
@@ -100,11 +102,39 @@ public class Okno implements ActionListener {
         // Koniec kart
 
 
-        //Dodanie AL
 
+        // Funkcja odpowiadająca za odświeżanie strony
         odswiez.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent event){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        tablicaWebView[tabbedPane.getSelectedIndex()].getEngine().reload();
+                    }
+                });
+            }
+        });
 
+
+        prev.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        
+                    }
+                });
+            }
+        });
+
+        next.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent event){
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+
+                    }
+                });
             }
         });
 
@@ -139,7 +169,7 @@ public class Okno implements ActionListener {
         } else {
             wyszukajWGoogle(url);
         }
-        System.out.println("WV: " + aktualnyWebView);
+        //System.out.println("WV: " + aktualnyWebView);
     } // Funkcja sprawdza url i wykonuje odpowiednią operacje zaladowania strony
 
     void zaladuj(String url){
@@ -172,17 +202,20 @@ public class Okno implements ActionListener {
     void nowaKarta(int width, int height){
         JFXPanel nowyJFX = new JFXPanel();
         Platform.runLater(() -> {
-            aktualnyWebView++;
+            aktualnyWebView = szukajOstatniej();
+            System.out.println("Webview to jest : " + aktualnyWebView);
             tablicaWebView[aktualnyWebView] = new WebView();
             nowyJFX.setPreferredSize(new Dimension(width,height));
             nowyJFX.setScene(new Scene(tablicaWebView[aktualnyWebView]));
             tablicaWebView[aktualnyWebView].getEngine().load("http://www.google.com/");
             tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(),tablicaWebView[aktualnyWebView].getEngine().getLocation());
             pasekAdresu.setText(tablicaWebView[aktualnyWebView].getEngine().getLocation());
+            System.out.println(tablicaWebView[aktualnyWebView].getEngine().getLocation());
             pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()] = tablicaWebView[aktualnyWebView].getEngine().getLocation();
+            aktualizujURL();
             tabbedPane.addChangeListener(this::zmianaKarty);
         });
-        System.out.println("DOdano, wv: " + aktualnyWebView);
+        //System.out.println("DOdano, wv: " + aktualnyWebView);
         tabbedPane.add(nowyJFX);
     }
 
@@ -193,5 +226,13 @@ public class Okno implements ActionListener {
             aktualnyWebView = tabbedPane.getSelectedIndex();
             System.out.println("Nr karty: " + aktualnyWebView);
         }
+    }
+
+    //Wyszukuje ostatniego wolnego panelu w kartach
+    int szukajOstatniej(){
+        int i=0;
+        while(tablicaWebView[i]!=null)
+            i++;
+        return i;
     }
 }
