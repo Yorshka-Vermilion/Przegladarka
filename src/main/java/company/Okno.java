@@ -1,13 +1,16 @@
 package company;
 
 import javafx.application.Platform;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.Scene;
 import javafx.scene.web.WebView;
-
+import javafx.scene.web.WebEngine;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.plaf.nimbus.State;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,8 +21,8 @@ public class Okno implements ActionListener {
     PasekAdresu pasekAdresu;
     WebView webView;
     JFXPanel jfxPanel;
-    JPanel pustyPanel;
     JTabbedPane tabbedPane;
+    WebView nowyWV;
     public Okno(){
         GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         int width = gd.getDisplayMode().getWidth();
@@ -39,12 +42,10 @@ public class Okno implements ActionListener {
 
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == pasekAdresu && pasekAdresu.focused){
-            pasekAdresu.zapiszPole();
-            System.out.println(pasekAdresu.wezPole());
-
-            wyszukaj(pasekAdresu.wezPole());
-
-        }else if(event.getSource() == webView){
+            pasekAdresu.zapiszPole(tabbedPane.getSelectedIndex());
+            wyszukaj(pasekAdresu.wezPole(tabbedPane.getSelectedIndex()));
+        }
+        else if(event.getSource() == webView){
             System.out.println("ELO");
         }
     }
@@ -68,6 +69,7 @@ public class Okno implements ActionListener {
             jfxPanel.setPreferredSize(new Dimension(panel2.getWidth(),panel2.getHeight()));
             jfxPanel.setScene(new Scene(webView));
             webView.getEngine().load("http://www.google.com/");
+            aktualizujURL();
         });
 
         // Inizjalizacja kart
@@ -123,15 +125,40 @@ public class Okno implements ActionListener {
         });
     } // Szuka fraze w gooogle
 
+
+    // Zmienia URL kart przeglądarki oraz paska adresu przy otwieraniu nowych stron
+    void aktualizujURL(){
+        webView.getEngine().getLoadWorker().stateProperty().addListener(new javafx.beans.value.ChangeListener<Worker.State>() {
+            @Override
+            public void changed(ObservableValue value, Worker.State stary, Worker.State nowy) {
+                if (nowy == Worker.State.SUCCEEDED) {
+                    pasekAdresu.zapiszPole(webView.getEngine().getLocation(),tabbedPane.getSelectedIndex());
+                    pasekAdresu.setText(webView.getEngine().getLocation());
+                    tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(),pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]);
+                }
+            }
+        });
+    }
+
     void nowaKarta(int width, int height){
         JFXPanel nowyJFX = new JFXPanel();
         Platform.runLater(() -> {
-            WebView nowyWV = new WebView();
+            nowyWV = new WebView();
             nowyJFX.setPreferredSize(new Dimension(width,height));
             nowyJFX.setScene(new Scene(nowyWV));
             nowyWV.getEngine().load("http://www.google.com/");
-            tabbedPane.setTitleAt(tabbedPane.getTabCount()-2,nowyWV.getEngine().getLocation());
+            tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(),nowyWV.getEngine().getLocation());
+            pasekAdresu.setText(nowyWV.getEngine().getLocation());
+            pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()] = nowyWV.getEngine().getLocation();
+            tabbedPane.addChangeListener(this::zmianaKarty);
         });
         tabbedPane.add(nowyJFX);
+    }
+
+    //Zmiana URL paska adresu przy przełączaniu się  między zakładkami
+    void zmianaKarty(ChangeEvent event){
+        if(event.getSource() == tabbedPane && pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]!=null){
+            pasekAdresu.setText(pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]);
+        }
     }
 }

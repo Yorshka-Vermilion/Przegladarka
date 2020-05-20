@@ -6,7 +6,7 @@ import java.awt.event.FocusListener;;
 
 
 public class PasekAdresu extends JTextField implements FocusListener {
-    String poleTekstowe;
+    String poleTekstowe[] = new String[1024];
     public boolean focused;
     public PasekAdresu(int rozmiar){
         setPreferredSize(new Dimension(rozmiar, 30));
@@ -14,11 +14,16 @@ public class PasekAdresu extends JTextField implements FocusListener {
         addFocusListener(this);
     }
 
-    public void zapiszPole(){
-        poleTekstowe = getText();
+    public void zapiszPole(int strona){
+        poleTekstowe[strona] = getText();
     }
-    public String wezPole(){
-        return this.poleTekstowe;
+
+    public void zapiszPole(String tekst, int strona){
+        poleTekstowe[strona] = tekst;
+    }
+
+    public String wezPole(int strona){
+        return this.poleTekstowe[strona];
     }
 
     @Override
