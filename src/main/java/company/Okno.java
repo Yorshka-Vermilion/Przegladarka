@@ -127,6 +127,7 @@ public class Okno implements ActionListener {
     }
 
     void wyszukaj(String url){
+        aktualnyWebView = tabbedPane.getSelectedIndex();
         if(url.contains(".")) {
             if(url.contains("https://")){
                 zaladuj(url);
