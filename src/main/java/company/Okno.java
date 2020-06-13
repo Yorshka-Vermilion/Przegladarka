@@ -25,6 +25,7 @@ public class Okno implements ActionListener {
     JTabbedPane tabbedPane;
     Button odswiez,next,prev;
     Historia historia;
+    int cofnij;
     private WebView[] tablicaWebView;
     private int aktualnyWebView;
     public Okno(){
@@ -47,6 +48,8 @@ public class Okno implements ActionListener {
 
         frame.pack();
         frame.setVisible(true);
+
+        cofnij = 2;
     }
 
     public void actionPerformed(ActionEvent event){
@@ -124,7 +127,11 @@ public class Okno implements ActionListener {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-                        historia.wypisz();
+                        if(historia.index - cofnij > -1) {
+                            System.out.println(historia.tab[historia.index - cofnij]);
+                            zaladuj(historia.tab[historia.index - cofnij], false);
+                            cofnij++;
+                        }
                     }
                 });
             }
@@ -135,7 +142,11 @@ public class Okno implements ActionListener {
                 Platform.runLater(new Runnable() {
                     @Override
                     public void run() {
-
+                        if(cofnij > 2){
+                            cofnij--;
+                            System.out.println(historia.tab[historia.index - cofnij]);
+                            zaladuj(historia.tab[historia.index - cofnij], false);
+                        }
                     }
                 });
             }
@@ -163,27 +174,27 @@ public class Okno implements ActionListener {
         aktualnyWebView = tabbedPane.getSelectedIndex();
         if(url.contains(".")) {
             if(url.contains("https://")){
-                zaladuj(url);
+                zaladuj(url,true);
             }else if(url.contains("http://")){
-                zaladuj(url);
+                zaladuj(url, true);
             }else {
-                zaladuj("https://" + url);
+                zaladuj("https://" + url, true);
             }
         } else {
-            wyszukajWGoogle(url);
+            wyszukajWGoogle(url, true);
         }
         //System.out.println("WV: " + aktualnyWebView);
     } // Funkcja sprawdza url i wykonuje odpowiednią operacje zaladowania strony
 
-    void zaladuj(String url){
-        historia.dodaj(url);
+    void zaladuj(String url, boolean zapis){
+        if(zapis)historia.dodaj(url);
         Platform.runLater(() -> {
             tablicaWebView[aktualnyWebView].getEngine().load(url);
         });
     } // Laduje stronę o podanym url
 
-    void wyszukajWGoogle(String fraza){
-        historia.dodaj("http://google.com/search?q=" + fraza);
+    void wyszukajWGoogle(String fraza, boolean zapis){
+        if(zapis) historia.dodaj("http://google.com/search?q=" + fraza);
         Platform.runLater(() -> {
             tablicaWebView[aktualnyWebView].getEngine().load("http://google.com/search?q=" + fraza);
         });
