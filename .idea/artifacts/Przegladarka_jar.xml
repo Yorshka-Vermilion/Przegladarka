@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="Przegladarka:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Przegladarka_jar</output-path>
+    <root id="root">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="Przegladarka" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-controls/12.0.2/javafx-controls-12.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-base/12.0.2/javafx-base-12.0.2-win.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/12.0.2/javafx-graphics-12.0.2-win.jar" path-in-jar="/" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:12.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-base:win:12.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:win:12.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-controls:12.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:win:12.0.2" />
+      <element id="library" level="project" name="Maven: org.openjfx:javafx-graphics:12.0.2" />
+    </root>
+  </artifact>
+</component>
