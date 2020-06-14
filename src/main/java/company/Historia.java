@@ -1,8 +1,8 @@
 package company;
 
 public class Historia {
-    String tab[];
-    int index;
+    public String tab[];
+    public int index;
     public Historia(){
         tab = new String[1024];
         index = 0;

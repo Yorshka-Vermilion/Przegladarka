@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="JakisTest" time="0.812" tests="4" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="windows"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.specification.version" value="11"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1250"/>
+    <property name="java.class.path" value="C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka\target\test-classes;C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka\target\classes;C:\Users\Arc\.m2\repository\com\dukescript\api\junit-browser-runner\1.0\junit-browser-runner-1.0.jar;C:\Users\Arc\.m2\repository\com\dukescript\api\junit-osgi\4.12\junit-osgi-4.12.jar;C:\Users\Arc\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Arc\.m2\repository\org\netbeans\html\net.java.html\1.4\net.java.html-1.4.jar;C:\Users\Arc\.m2\repository\org\netbeans\html\net.java.html.boot\1.4\net.java.html.boot-1.4.jar;C:\Users\Arc\.m2\repository\org\apidesign\bck2brwsr\emul\0.20\emul-0.20-rt.jar;C:\Users\Arc\.m2\repository\org\apidesign\bck2brwsr\emul\0.20\emul-0.20-bck2brwsr.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-controls\12.0.2\javafx-controls-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-controls\12.0.2\javafx-controls-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-graphics\12.0.2\javafx-graphics-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-graphics\12.0.2\javafx-graphics-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-base\12.0.2\javafx-base-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-base\12.0.2\javafx-base-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0-M1\junit-jupiter-api-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Arc\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Arc\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0-M1\junit-platform-commons-1.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.2\junit-jupiter-engine-5.6.2.jar;C:\Users\Arc\.m2\repository\org\junit\platform\junit-platform-engine\1.6.2\junit-platform-engine-1.6.2.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter\5.7.0-M1\junit-jupiter-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.0-M1\junit-jupiter-params-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\testng\testng\7.1.0\testng-7.1.0.jar;C:\Users\Arc\.m2\repository\com\beust\jcommander\1.72\jcommander-1.72.jar;C:\Users\Arc\.m2\repository\com\google\inject\guice\4.1.0\guice-4.1.0-no_aop.jar;C:\Users\Arc\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Arc\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Users\Arc\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\Arc\.m2\repository\org\yaml\snakeyaml\1.21\snakeyaml-1.21.jar;"/>
+    <property name="java.vm.vendor" value="JetBrains s.r.o"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://www.jetbrains.com/"/>
+    <property name="user.timezone" value="Europe/Belgrade"/>
+    <property name="java.vm.specification.version" value="11"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="PL"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.3\jbr\bin"/>
+    <property name="sun.java.command" value="C:\Users\Arc\AppData\Local\Temp\surefire6623471404878387553\surefirebooter18258483283626301758.jar C:\Users\Arc\AppData\Local\Temp\surefire6623471404878387553 2020-06-14T14-13-35_286-jvmRun1 surefire6119716777210622063tmp surefire_03018780306388503865tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka\target\test-classes;C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka\target\classes;C:\Users\Arc\.m2\repository\com\dukescript\api\junit-browser-runner\1.0\junit-browser-runner-1.0.jar;C:\Users\Arc\.m2\repository\com\dukescript\api\junit-osgi\4.12\junit-osgi-4.12.jar;C:\Users\Arc\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Arc\.m2\repository\org\netbeans\html\net.java.html\1.4\net.java.html-1.4.jar;C:\Users\Arc\.m2\repository\org\netbeans\html\net.java.html.boot\1.4\net.java.html.boot-1.4.jar;C:\Users\Arc\.m2\repository\org\apidesign\bck2brwsr\emul\0.20\emul-0.20-rt.jar;C:\Users\Arc\.m2\repository\org\apidesign\bck2brwsr\emul\0.20\emul-0.20-bck2brwsr.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-controls\12.0.2\javafx-controls-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-controls\12.0.2\javafx-controls-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-graphics\12.0.2\javafx-graphics-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-graphics\12.0.2\javafx-graphics-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-base\12.0.2\javafx-base-12.0.2.jar;C:\Users\Arc\.m2\repository\org\openjfx\javafx-base\12.0.2\javafx-base-12.0.2-win.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.0-M1\junit-jupiter-api-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\Arc\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\Arc\.m2\repository\org\junit\platform\junit-platform-commons\1.7.0-M1\junit-platform-commons-1.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.6.2\junit-jupiter-engine-5.6.2.jar;C:\Users\Arc\.m2\repository\org\junit\platform\junit-platform-engine\1.6.2\junit-platform-engine-1.6.2.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter\5.7.0-M1\junit-jupiter-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.7.0-M1\junit-jupiter-params-5.7.0-M1.jar;C:\Users\Arc\.m2\repository\org\testng\testng\7.1.0\testng-7.1.0.jar;C:\Users\Arc\.m2\repository\com\beust\jcommander\1.72\jcommander-1.72.jar;C:\Users\Arc\.m2\repository\com\google\inject\guice\4.1.0\guice-4.1.0-no_aop.jar;C:\Users\Arc\.m2\repository\javax\inject\javax.inject\1\javax.inject-1.jar;C:\Users\Arc\.m2\repository\aopalliance\aopalliance\1.0\aopalliance-1.0.jar;C:\Users\Arc\.m2\repository\com\google\guava\guava\19.0\guava-19.0.jar;C:\Users\Arc\.m2\repository\org\yaml\snakeyaml\1.21\snakeyaml-1.21.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\Arc"/>
+    <property name="user.language" value="pl"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2019-10-15"/>
+    <property name="java.home" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.3\jbr"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="C:\Users\Arc\AppData\Local\Temp\surefire6623471404878387553\surefirebooter18258483283626301758.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="11.0.5+10-b520.38"/>
+    <property name="user.name" value="Arc"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1250"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\Arc\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://youtrack.jetbrains.com"/>
+    <property name="java.io.tmpdir" value="C:\Users\Arc\AppData\Local\Temp\"/>
+    <property name="java.version" value="11.0.5"/>
+    <property name="user.dir" value="C:\Users\Arc\Desktop\Polibuda\Seozn4\Java\Przegladarka"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="idea.version2019.3.3" value="true"/>
+    <property name="java.library.path" value="C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2019.3.3\jbr\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\app\Arc\product\18.0.0\dbhomeXE\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;D:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Arc\AppData\Local\Programs\Python\Python38-32\Scripts\;C:\Users\Arc\AppData\Local\Programs\Python\Python38-32\;C:\Users\Arc\AppData\Local\Microsoft\WindowsApps;C:\Users\Arc\AppData\Roaming\npm;C:\Users\Arc\AppData\Local\GitHubDesktop\bin;C:\Users\Arc\AppData\Local\atom\bin;."/>
+    <property name="java.vendor" value="JetBrains s.r.o"/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vm.version" value="11.0.5+10-b520.38"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="55.0"/>
+  </properties>
+  <testcase name="TestButt" classname="JakisTest" time="0.064"/>
+  <testcase name="TestHist" classname="JakisTest" time="0.001"/>
+  <testcase name="TestPanel" classname="JakisTest" time="0.091"/>
+  <testcase name="TestPasek" classname="JakisTest" time="0.037"/>
+</testsuite>
