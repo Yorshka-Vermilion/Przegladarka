@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -51,6 +52,7 @@ public class Okno implements ActionListener {
 
         cofnij = 2;
     }
+
 
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == pasekAdresu && pasekAdresu.focused){
