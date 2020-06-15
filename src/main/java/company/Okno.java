@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.web.WebHistory;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
-
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -18,21 +17,38 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/***
+ * Klasa Okna w której wykonywane są wszystkie akcje związane z architektrurą okna przeglądarki
+ */
+
 public class Okno implements ActionListener {
+    /** Zmienna odpowiadająca wyświetlającemu się oknu przeglądarki */
     JFrame frame;
+    /** Zmienna odpowiadjąca za odpowiednie rozstawienie elementów przeglądarki w oknie, odpowiednie pozycjonowanie */
     Panel spod, panel, panel2;
+    /** Jest to pasek wyświetlający się u góry okna przeglądarki */
     PasekAdresu pasekAdresu;
+    /** Panel zawierający w sobie wszystkie karty zakładek  */
     JFXPanel jfxPanel;
+    /** Panel zawierający w sobioe wszystkie karty zakładek z podziałem na poszczególne karty */
     JTabbedPane tabbedPane;
-    Button odswiez,next,prev;
+    /** Przyciski odpowiadające za konkretne funkcje */
+    Button odswiez,next,prev,hist;
+    /** Przechowuje dane na temat historii przeglądania */
     Historia historia;
+    /** Zmienna klasy WebView w formie tablicy, pozwala na wyświetlanie zróżnicowanych stron zależnie od karty */
+    WebView[] tablicaWebView;
+    /** Wykorzystywana do kontroli stron tablicy WebView */
+    int aktualnyWebView;
+    /** Wykorzystywana przy kontroli cofania stron internetowych w karcie przeglądarki */
     int cofnij;
-    private WebView[] tablicaWebView;
-    private int aktualnyWebView;
+    /***
+     *Konstruktor domyślny okna, uruchamia okno przeglądarki oraz ustawia jego podstawowe parametry
+     */
     public Okno(){
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth();
-        int height = gd.getDisplayMode().getHeight();
+        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice(); /** Pobiera informacje co do rozmiaru monitora */
+        int width = gd.getDisplayMode().getWidth(); /** Zmienna zawierająca szerokość okna przeglądarki */
+        int height = gd.getDisplayMode().getHeight(); /** Zmienna zawierająca wysokość okna przeglądarki */
 
         this.tablicaWebView = new WebView[100];
         aktualnyWebView = 0;
@@ -53,17 +69,23 @@ public class Okno implements ActionListener {
         cofnij = 2;
     }
 
-
+    /***
+     * Funkcja odpowiada za reagowanie na zdarzenia zachodzące w obrębie programu
+     * @param event Zmienna przechowująca kolejke zdarzeń programu
+     */
     public void actionPerformed(ActionEvent event){
         if(event.getSource() == pasekAdresu && pasekAdresu.focused){
             pasekAdresu.zapiszPole(tabbedPane.getSelectedIndex());
             wyszukaj(pasekAdresu.wezPole(tabbedPane.getSelectedIndex()));
         }
-        else if(event.getSource() == tablicaWebView[aktualnyWebView]){
-            System.out.println("ELO");
-        }
     }
 
+    /***
+     * Funkcja odpowiada za ustawienie wszystkich elementów przeglądarki w oknie programu oraz za ustalanie wartości domyślnych nowych kart.
+     * Odpowiada również za nadanie funkcjonalności poszczególnym przyciskom.
+     * @param width Zmienna opisująca szerokość okna przeglądarki
+     * @param height Zmienna opisująca wysokość okna przeglądarki
+     */
     void zainicjujLayout(int width, int height){
         // Dodanie pasku adresu
         pasekAdresu = new PasekAdresu(width-150);
@@ -78,11 +100,9 @@ public class Okno implements ActionListener {
         next = new Button("->");
         prev  = new Button("<-");
         odswiez = new Button("%");
-
-
+        hist = new Button("#");
 
         jfxPanel = new JFXPanel();
-        //panel2.add(jfxPanel);
 
         Platform.runLater(() -> {
             tablicaWebView[aktualnyWebView] = new WebView();
@@ -107,8 +127,6 @@ public class Okno implements ActionListener {
                 }
             }
         });
-        // Koniec kart
-
 
 
         // Funkcja odpowiadająca za odświeżanie strony
@@ -154,8 +172,12 @@ public class Okno implements ActionListener {
             }
         });
 
-
-
+        hist.addActionListener((new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                historia.wypisz();
+            }
+        }));
 
         // Zagnieżdzenie paneli
         panel2.add(tabbedPane);
@@ -163,6 +185,7 @@ public class Okno implements ActionListener {
         spod.add(panel);
         panel.add(prev);
         panel.add(next);
+        panel.add(hist);
         panel.add(pasekAdresu);
         panel.add(odswiez);
         spod.add(panel2);
@@ -172,6 +195,10 @@ public class Okno implements ActionListener {
         */
     }
 
+    /***
+     * Funkcja odpowiada za sprawdzanie zawartości wpisanego url w pasku adresu danej karty oraz na tej podstawie podejmuje decyzje o sposobie załadowania strony
+     * @param url Adres internetowy strony wpisanej w pasku adresu
+     */
     void wyszukaj(String url){
         aktualnyWebView = tabbedPane.getSelectedIndex();
         if(url.contains(".")) {
@@ -188,6 +215,11 @@ public class Okno implements ActionListener {
         //System.out.println("WV: " + aktualnyWebView);
     } // Funkcja sprawdza url i wykonuje odpowiednią operacje zaladowania strony
 
+    /***
+     * Funkcja odpowiada za załadowanie strony internetowej w przeglądarce, na podstawie adresu przekazanego w pasku adresu oraz za dodanie strony do historii przeglądarki
+     * @param url Adres internetowy strony wpisanej w pasku adresu
+     * @param zapis Wskazuje czy dana strona ma zostać zapisana do histroii przeglądania
+     */
     void zaladuj(String url, boolean zapis){
         if(zapis)historia.dodaj(url);
         Platform.runLater(() -> {
@@ -195,6 +227,11 @@ public class Okno implements ActionListener {
         });
     } // Laduje stronę o podanym url
 
+    /***
+     * Funkcja odpowiada za załadowanie frazy w google, w sytuacji gdy wpisana przez użytkownika fraza nie była stroną internetową lub nie zgadzała się z
+     * @param fraza Fraza wpisana w pasku adresu, która nie została potraktowana jako adres strony internetowej
+     * @param zapis Wskazuje czy dana strona ma zostać zapisana do histroii przeglądania
+     */
     void wyszukajWGoogle(String fraza, boolean zapis){
         if(zapis) historia.dodaj("http://google.com/search?q=" + fraza);
         Platform.runLater(() -> {
@@ -203,6 +240,9 @@ public class Okno implements ActionListener {
     } // Szuka fraze w gooogle
 
 
+    /***
+     * Funkcja jest odpowiedzialna za aktualizowanie paska adresu w sytuacji wpisania nowej strony internetowej, wraz z podziałem na zakładki przeglądarki
+     */
     // Zmienia URL kart przeglądarki oraz paska adresu przy otwieraniu nowych stron
     void aktualizujURL(){
         tablicaWebView[aktualnyWebView].getEngine().getLoadWorker().stateProperty().addListener(new javafx.beans.value.ChangeListener<Worker.State>() {
@@ -218,6 +258,11 @@ public class Okno implements ActionListener {
         });
     }
 
+    /***
+     * Funkcja tworzy nową karte w zakładkach przeglądarki oraz ustawia jej wszystkie niezbędne atrybuty do działania
+     * @param width Zmienna opisująca szerokość zakładki przeglądarki
+     * @param height Zmienna opisująca wysokość zakładki przeglądarki
+     */
     void nowaKarta(int width, int height){
         JFXPanel nowyJFX = new JFXPanel();
         Platform.runLater(() -> {
@@ -238,15 +283,23 @@ public class Okno implements ActionListener {
         tabbedPane.add(nowyJFX);
     }
 
+    /**
+     * Funkcja jest odpowiedzialna za aktualizowanie paska adresu w zależności od zakładki na której się obecnie znajdujemy
+     * @param event Zmienna przechowująca kolejke zdarzeń programu
+     */
     //Zmiana URL paska adresu przy przełączaniu się  między zakładkami
     void zmianaKarty(ChangeEvent event){
         if(event.getSource() == tabbedPane && pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]!=null){
             pasekAdresu.setText(pasekAdresu.poleTekstowe[tabbedPane.getSelectedIndex()]);
             aktualnyWebView = tabbedPane.getSelectedIndex();
-            System.out.println("Nr karty: " + aktualnyWebView);
+            //System.out.println("Nr karty: " + aktualnyWebView);
         }
     }
 
+    /**
+     * Funkcja przeszukuje tablicę kart przeglądarki w poszukiwaniu pierwszego indeksu, który nie ma przypisanego żadnego adresu
+     * @return Zwraca wartość typu Int określającą w indeks karty, w której można wyświetlić stronę
+     */
     //Wyszukuje ostatniego wolnego panelu w kartach
     int szukajOstatniej(){
         int i=0;
